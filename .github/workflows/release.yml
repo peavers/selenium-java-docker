@@ -45,13 +45,8 @@ jobs:
           images: |
             peavers/selenium-java
           tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
+            type=raw,value=${{ steps.new_tag.outputs.tag }}
+            type=raw,value=latest
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -74,3 +69,6 @@ jobs:
         with:
           id: ${{ steps.create_release.id }}
           tag: ${{ steps.new_tag.outputs.tag }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}

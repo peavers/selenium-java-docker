@@ -1,4 +1,4 @@
-#Selenium Java & Docker
+# Selenium + Java + Docker
 This is a Dockerfile with the latest version of Google Chrome and the Google Chrome Web Driver along with the Java 16 
 JDK. 
 
